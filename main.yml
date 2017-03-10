@@ -1,6 +1,6 @@
 ---
-- hosts: localhost
-  name: ansibleVPSie
+- hosts: "localhost"
+  name: "ansibleVPSie"
 
   vars:
     clientID: "" #Required VPSie api ID
@@ -13,24 +13,24 @@
 
   tasks:
 
-  - name: Load VPSie CI values
+  - name: "Load VPSie CI values"
     include: defaults/constants.yml
 
-  - name: Spit the provisioning IDs
+  - name: "Spit the provisioning IDs"
     debug:
       msg: "Image ID is {{image_id}} - Datacenter ID is {{datacenter_id}} - Offer ID is {{datacenter_id}}"
       verbosity: 3
 
-  - name: VPSie authenticate
+  - name: "VPSie authenticate"
     include: tasks/vpsieAuth.yml
 
 #  - name: VPSie GetInfo
 #    include: tasks/vpsieGetInfo.yml
 
-  - name: VPSie Create instance
+  - name: "VPSie Create instance"
     include: tasks/vpsieCreate.yml
 
-  - name: Spit VPSie creation results
+  - name: "Spit VPSie creation results"
     debug:
       msg: "{{VPScreateResult}}"
       verbosity: 3
