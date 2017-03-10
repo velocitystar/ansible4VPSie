@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  name: ansibleVPSie
+
+  vars:
+    clientID: "" #Required VPSie api ID
+    clientPWD: "" #Required VPSie api Password
+    VPSieName:  "" #Required VPSie instance name
+    offerName: "" #Required VPSie offer size
+    datacenterName: "" #Required datacenter
+    imageName: "" #Required VPSie image to provision from
+    sshPrivKey: "" #Optional - specifiy a SSH Private Key
+
+  tasks:
+
+  - name: Load VPSie CI values
+    include: defaults/constants.yml
+
+  - name: Spit the provisioning IDs
+    debug:
+      msg: "Image ID is {{image_id}} - Datacenter ID is {{datacenter_id}} - Offer ID is {{datacenter_id}}"
+      verbosity: 3
+
+  - name: VPSie authenticate
+    include: tasks/vpsieAuth.yml
+
+#  - name: VPSie GetInfo
+#    include: tasks/vpsieGetInfo.yml
+
+  - name: VPSie Create instance
+    include: tasks/vpsieCreate.yml
+
+  - name: Spit VPSie creation results
+    debug:
+      msg: "{{VPScreateResult}}"
+      verbosity: 3

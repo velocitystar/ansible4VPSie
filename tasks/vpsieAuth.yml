@@ -1,0 +1,13 @@
+- name: VPSie - authenticate
+  uri:
+    url: https://api.vpsie.com/v1/token
+    method: POST
+    validate_certs: no
+    return_content: yes
+    body:
+      grand_type: bearer
+      client_id: "{{clientID}}" # provide your VPSie api ID
+      client_secret: "{{clientPWD}}" # # provide your VPSie api ID
+    body_format: json
+    status_code: 200
+  register: authresult

@@ -1,0 +1,40 @@
+
+#- name: Output access token
+#  debug:
+#    msg: "{{authresult.json.token.access_token}}"
+
+- name: VPSie - Account Balance
+  uri:
+    url: https://api.vpsie.com/v1/balance
+    method: GET
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{authresult.json.token.access_token}}"
+  register: balance
+
+- name: VPSie - List Datacenters
+  uri:
+    url: https://api.vpsie.com/v1/datacenters
+    method: GET
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{authresult.json.token.access_token}}"
+  register: datacenters
+
+- name: VPSie - List Images
+  uri:
+    url: https://api.vpsie.com/v1/images
+    method: GET
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{authresult.json.token.access_token}}"
+  register: images
+
+- name: VPSie - List Sizes
+  uri:
+    url: https://api.vpsie.com/v1/offers
+    method: GET
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{authresult.json.token.access_token}}"
+  register: offers

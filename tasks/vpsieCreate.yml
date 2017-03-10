@@ -1,0 +1,27 @@
+- name: VPSie - Create VPSie instance
+  uri:
+    url: https://api.vpsie.com/v1/vpsie
+    method: POST
+    validate_certs: no
+    return_content: yes
+    body:
+      hostname: "{{VPSieName}}"
+
+      #offer_id: "9a0e49c6-9f22-11e3-8af5-005056aa8af7" # Jerry
+      #datacenter_id: "ab70b3b6-9f22-11e3-8af5-005056aa8af7" # NY2
+      #os_id: "75401d7d-d9d3-11e3-b135-005056aa8af7" # Ubuntu 14.04.01 x64
+
+      offer_id: "{{offer_id}}"
+      datacenter_id: "{{datacenter_id}}"
+      os_id: "{{image_id}}"
+      sshkey_id: "{{sshPrivKey}}"
+      note: ""
+      ipv6: false
+      autobackup: false
+      ipv4: true
+      private_ip: true
+    body_format: json
+    status_code: 200
+    headers:
+      Authorization: "Bearer {{authresult.json.token.access_token}}"
+  register: VPScreateResult

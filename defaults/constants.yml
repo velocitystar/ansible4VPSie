@@ -1,0 +1,66 @@
+---
+- name: Set offer_id
+  vars:
+    Dict: {
+      JERRY: 9a0e49c6-9f22-11e3-8af5-005056aa8af7, # {cpu :1, ram :0.75 GB, ssd :10, bandwidth :1 TB, price :$4}
+      TOM: 9a0e4dbe-9f22-11e3-8af5-005056aa8af7, # {cpu :1, ram :1 GB, ssd :20, bandwidth :1 TB, price :$8}
+      SPIKE: 9a0e4e84-9f22-11e3-8af5-005056aa8af7, # {cpu :1, ram :2 GB, ssd :40, bandwidth :2 TB, price :$16}
+      SIMBA: 9a0e4ee3-9f22-11e3-8af5-005056aa8af7, # {cpu :2, ram :4 GB, ssd :40, bandwidth :3 TB, price :$32}
+      GREENMAN: 9a0e4f32-9f22-11e3-8af5-005056aa8af7, # {cpu :2, ram :6 GB, ssd :80, bandwidth :3 TB, price :$48}
+      IRONMAN: 9a0e4f81-9f22-11e3-8af5-005056aa8af7, # {cpu :4, ram :8 GB, ssd :80, bandwidth :4 TB, price :$64}
+      SPIDERMAN: fb02f595-e170-11e3-b135-005056aa8af7, # {cpu :4, ram :12 GB, ssd :100, bandwidth :5 TB, price :$96}
+      SUPERMAN: 1e3cc32c-e171-11e3-b135-005056aa8af7 # {cpu :8, ram :16 GB, ssd :100, bandwidth :5 TB, price :$132}
+      }
+    offer_def: '{{Dict[offerName | default("the offer specified is unsupported")] | default("") }}'
+  set_fact:
+    offer_id: "{{ offer_def }}"
+
+- name: Set datacenter_id
+  vars:
+    Dict: {
+      NewYork: ab70b3b6-9f22-11e3-8af5-005056aa8af7,
+      N_Virginia: ab70b42f-9f22-11e3-8af5-005056aa8af7,
+      LA_CA: 55f06b85-c9ee-11e3-9845-005056aa8af7,
+      Amsterdam: af876af7-f295-11e4-b45d-005056aadd24
+      }
+    datacenter_def: '{{Dict[datacenterName | default("the datacenter specified is unsupported")] | default("") }}'
+  set_fact:
+    datacenter_id: "{{ datacenter_def }}"
+
+- name: Set image_id
+  vars:
+    Dict: {
+      LAMP: 026b395a-e023-11e3-b135-005056aa8af7,
+      Debian7.1x64: 19f1b2ec-d9d3-11e3-b135-005056aa8af7,
+      PrestaShop: 39cb03df-4ede-11e4-9b39-005056aadd24,
+      CentOS6.5x86: 401a4388-d9d4-11e3-b135-005056aa8af7,
+      Zabbix: 42c5d8cf-101a-11e5-b45d-005056aadd24,
+      WordPress: 4a1b9651-61a6-11e4-a578-005056aadd24,
+      Ubuntu14.04.01x86: 51a056fb-d9d3-11e3-b135-005056aa8af7,
+      CentOS6.5x64: 5a0e5827-d9d4-11e3-b135-005056aa8af7,
+      CentOs7x64: 64f4028f-4ede-11e4-9b39-005056aadd24,
+      Ubiquiti–UniFi: 67840a47-b1f7-11e4-a0a5-005056aadd24,
+      SugarCRM: 72f345e7-61a6-11e4-a578-005056aadd24,
+      Ubuntu14.04.01x64: 75401d7d-d9d3-11e3-b135-005056aa8af7,
+      cPanel: 75c99796-e022-11e3-b135-005056aa8af7,
+      Sphirewall: 7ffcae64-135f-11e4-ab88-005056aadd24,
+      GitLab: 8954cbf3-08e3-11e4-ad18-005056aadd24,
+      WindowsServer2008: 89df1a9f-d9d4-11e3-b135-005056aa8af7,
+      LiveHelperChat: 9e4f4d7b-c36b-11e4-a0a5-005056aadd24,
+      CoreOS: 9eae2aa2-ad41-11e4-a0a5-005056aadd24,
+      Ghost: a089cf9a-e022-11e3-b135-005056aa8af7,
+      OpenSuSE13.1x86: a1657fb0-dc15-11e3-b135-005056aa8af7,
+      Fedora19x86: a6117b2d-d9d3-11e3-b135-005056aa8af7,
+      ClearOS: a940779b-1379-11e4-ab88-005056aadd24,
+      OpenSuSE13.1x64: c10e1edd-dc15-11e3-b135-005056aa8af7,
+      Fedora19x64: c4cd81ca-d9d3-11e3-b135-005056aa8af7,
+      Docker: cac3eef1-e022-11e3-b135-005056aa8af7,
+      Sentora: d9dca1e0-cbe3-11e4-a0a5-005056aadd24,
+      Debian7.1x86: df62b6ee-d9d2-11e3-b135-005056aa8af7,
+      RVM: e6e71262-e022-11e3-b135-005056aa8af7,
+      Zenoss: eefe0b07-8265-11e4-a0a5-005056aadd24,
+      WindowsServer2012R2: f2b00135-068d-11e4-b972-005056aadd24,
+      }
+    image_def: '{{Dict[imageName | default("the image specified is unsupported")] | default("") }}'
+  set_fact:
+    image_id: "{{ image_def }}"
