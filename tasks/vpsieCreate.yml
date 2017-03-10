@@ -1,3 +1,4 @@
+---
 - name: VPSie - Create VPSie instance
   uri:
     url: https://api.vpsie.com/v1/vpsie
