@@ -14,7 +14,7 @@
   tasks:
 
   - name: "Load VPSie CI values"
-    include: defaults/constants.yml
+    include: "defaults/constants.yml"
 
   - name: "Spit the provisioning IDs"
     debug:
@@ -22,13 +22,13 @@
       verbosity: 3
 
   - name: "VPSie authenticate"
-    include: tasks/vpsieAuth.yml
+    include: "tasks/vpsieAuth.yml"
 
 #  - name: VPSie GetInfo
 #    include: tasks/vpsieGetInfo.yml
 
   - name: "VPSie Create instance"
-    include: tasks/vpsieCreate.yml
+    include: "tasks/vpsieCreate.yml"
 
   - name: "Spit VPSie creation results"
     debug:
