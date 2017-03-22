@@ -7,7 +7,7 @@
     clientID: "" #Required VPSie api ID
     clientPWD: "" #Required VPSie api Password
     VPSieName:  "" #Required VPSie instance name
-    DOMAIN: "wifirush.com"
+    DOMAIN: "yourdomain.com" #Required ONLY when GoDaddyDNS task is enabled
     offerName: "" #Required VPSie offer size
     datacenterName: "" #Required datacenter
     imageName: "" #Required VPSie image to provision from
