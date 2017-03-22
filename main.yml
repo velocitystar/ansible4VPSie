@@ -1,36 +1,39 @@
 ---
-- hosts: "localhost"
-  name: "ansibleVPSie"
+- hosts: localhost
+  name: ansibleVPSie
 
   vars:
+    sshPort: 22
     clientID: "" #Required VPSie api ID
     clientPWD: "" #Required VPSie api Password
     VPSieName:  "" #Required VPSie instance name
+    DOMAIN: "wifirush.com"
     offerName: "" #Required VPSie offer size
     datacenterName: "" #Required datacenter
     imageName: "" #Required VPSie image to provision from
+    godaddyAPI: "" #Required Godaddy api ID
+    godaddyAPIpass: "" #Required godaddy api Password
     sshPrivKey: "" #Optional - specifiy a SSH Private Key
-
+    AddGoDaddyDNS: false
   tasks:
 
-  - name: "Load VPSie CI values"
-    include: "defaults/constants.yml"
+  - name: Load VPSie CI values
+    include: defaults/constants.yml
 
-  - name: "Spit the provisioning IDs"
+  - name: Spit the provisioning IDs
     debug:
       msg: "Image ID is {{image_id}} - Datacenter ID is {{datacenter_id}} - Offer ID is {{datacenter_id}}"
       verbosity: 3
 
-  - name: "VPSie authenticate"
-    include: "tasks/vpsieAuth.yml"
+  - name: VPSie authenticate
+    include: tasks/vpsieAuth.yml
 
 #  - name: VPSie GetInfo
 #    include: tasks/vpsieGetInfo.yml
 
-  - name: "VPSie Create instance"
-    include: "tasks/vpsieCreate.yml"
+  - name: VPSie Create instance
+    include: tasks/vpsieCreate.yml
 
-  - name: "Spit VPSie creation results"
-    debug:
-      msg: "{{VPScreateResult}}"
-      verbosity: 3
+  - name: Godaddy - Create DNS A record
+    include: tasks/godaddyDNS.yml
+    when: AddGoDaddyDNS

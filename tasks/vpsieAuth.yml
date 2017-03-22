@@ -1,4 +1,3 @@
----
 - name: VPSie - authenticate
   uri:
     url: https://api.vpsie.com/v1/token

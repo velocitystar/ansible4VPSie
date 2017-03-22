@@ -1,4 +1,3 @@
----
 - name: VPSie - Create VPSie instance
   uri:
     url: https://api.vpsie.com/v1/vpsie
@@ -26,3 +25,15 @@
     headers:
       Authorization: "Bearer {{authresult.json.token.access_token}}"
   register: VPScreateResult
+
+- name: Wait for server to wake up
+  wait_for:
+    host: "{{VPScreateResult.json.ipv4}}"
+    port: "{{sshPort}}"
+    delay: 3
+    timeout: 180
+    
+- name: Spit VPSie creation results
+  debug:
+    msg: "{{VPScreateResult}}"
+    verbosity: 3

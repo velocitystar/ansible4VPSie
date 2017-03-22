@@ -1,4 +1,4 @@
----
+
 #- name: Output access token
 #  debug:
 #    msg: "{{authresult.json.token.access_token}}"

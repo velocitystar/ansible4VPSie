@@ -64,4 +64,3 @@
     image_def: '{{Dict[imageName | default("the image specified is unsupported")] | default("") }}'
   set_fact:
     image_id: "{{ image_def }}"
-  

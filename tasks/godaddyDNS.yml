@@ -1,0 +1,23 @@
+- name: Godaddy - Create DNS A record
+  uri:
+    url: https://api.godaddy.com/v1/domains/{{DOMAIN}}/records
+    method: PATCH
+    validate_certs: no
+    return_content: yes
+    body: [
+            {
+              "type": "A",
+              "name": "{{VPSieName}}",
+              "data": "{{VPScreateResult.json.ipv4}}",
+              "ttl": 600
+            }
+          ]
+    body_format: json
+    headers:
+      Authorization: "sso-key {{godaddyAPI}}:{{godaddyAPIpass}}"
+  register: DNSregResult
+
+- name: Debug Output
+  debug:
+    msg: "{{DNSregResult}}"
+    verbosity: 3
